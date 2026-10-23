@@ -93,6 +93,6 @@ This is an educational AI/ML project. Predictions are estimates and have not bee
 
 ## 👨‍💻 Author
 
-**Hamza Sayyad**
+**Hamza Sayyed**
 
 GitHub: https://github.com/hamzahsayyed
