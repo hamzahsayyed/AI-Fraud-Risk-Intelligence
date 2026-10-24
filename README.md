@@ -2,7 +2,7 @@
 
 An AI/ML-powered application that analyzes financial transaction data and estimates the probability of fraudulent activity using an XGBoost machine learning model.
 
-🚀 **Live Demo:** https://ai-fraud-risk-intelligence-hamza.streamlit.app/
+🚀 **Live Demo:** https://ai-fraud-risk-intelligence-hamzahs.streamlit.app/
 
 ## ✨ Features
 
