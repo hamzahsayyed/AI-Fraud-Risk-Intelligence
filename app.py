@@ -17,6 +17,46 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+# RESPONSIVE DESIGN
+st.markdown("""
+<style>
+/* Keep the existing desktop layout unchanged */
+@media (max-width: 768px) {
+    .block-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+
+    h1 {
+        font-size: 1.7rem !important;
+        overflow-wrap: anywhere;
+    }
+
+    h2 {
+        font-size: 1.4rem !important;
+        overflow-wrap: anywhere;
+    }
+
+    h3 {
+        font-size: 1.15rem !important;
+    }
+
+    [data-testid="stMetric"] {
+        padding: 0.5rem 0;
+        min-width: 0;
+    }
+
+    [data-testid="stDataFrame"] {
+        max-width: 100%;
+    }
+
+    button {
+        min-height: 44px;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
