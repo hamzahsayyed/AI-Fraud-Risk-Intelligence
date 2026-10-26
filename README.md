@@ -1,159 +1,98 @@
-# AI Fraud Risk Intelligence
+# 🛡️ AI Fraud Risk Intelligence
 
-An end-to-end machine learning application that estimates the likelihood of fraudulent financial transactions using XGBoost. The project combines predictive modeling, an interactive Streamlit interface, and transaction history management to demonstrate a practical fraud risk analysis workflow.
+An AI/ML-powered application that analyzes financial transaction data and estimates the probability of fraudulent activity using an XGBoost machine learning model.
 
-## Project Overview
+🚀 **Live Demo:** https://ai-fraud-risk-intelligence-hamzahs.streamlit.app/
 
-Financial fraud detection is a challenging classification problem because fraudulent transactions represent a small proportion of overall transaction activity. This project uses the IEEE-CIS Fraud Detection dataset to develop a machine learning model that identifies potentially suspicious transactions and presents risk estimates through a web dashboard.
+## ✨ Features
 
-The application is designed as an educational demonstration of machine learning integration, model evaluation, and interactive data analysis.
+- **Fraud Risk Prediction:** Estimates the probability of a transaction being fraudulent.
+- **Risk Classification:** Categorizes transactions as Low, Medium, or High risk.
+- **Interactive Dashboard:** Displays transaction statistics and risk distribution.
+- **Transaction History:** Stores analyzed transactions in an SQLite database.
+- **CSV Export:** Download transaction history for further analysis.
 
-## Key Features
+## 🧠 Technologies Used
 
-- **Fraud Risk Prediction:** Estimates transaction fraud probability using an XGBoost classifier.
-- **Risk Classification:** Categorizes predictions into Low, Medium, and High risk levels.
-- **Interactive Dashboard:** Provides a Streamlit interface for entering transaction details and reviewing prediction results.
-- **Transaction Management:** Stores analyzed transactions in an SQLite database.
-- **Risk Analytics:** Displays transaction summaries and risk distribution visualizations.
-- **Historical Analysis:** Presents previously analyzed transactions in a structured table.
-- **Data Export:** Allows users to download transaction history as a CSV file.
+- Python
+- XGBoost
+- Pandas & NumPy
+- Scikit-learn
+- Streamlit
+- SQLite
+- Git & GitHub
 
-## Technology Stack
+## 📊 Model Evaluation
 
-| Category | Technologies |
-|---|---|
-| Programming Language | Python |
-| Machine Learning | XGBoost, Scikit-learn |
-| Data Processing | Pandas, NumPy |
-| Web Application | Streamlit |
-| Database | SQLite |
-| Model Persistence | Joblib |
-| Data Visualization | Streamlit charts |
+The model was developed using the IEEE-CIS Fraud Detection dataset from Kaggle.
 
-## Dataset
+Evaluation metrics include:
+- ROC-AUC
+- Precision
+- Recall
+- F1-score
+- Confusion matrix
 
-The project uses the IEEE-CIS Fraud Detection dataset from Kaggle.
+Model performance depends on the dataset, input features, and prediction threshold. The application's predictions are experimental and should not be used as the sole basis for real financial decisions.
 
-The dataset contains transaction records with a highly imbalanced target variable, making fraud detection a challenging binary classification task.
+## ⚙️ Run Locally
 
-**Target variable:** `isFraud`
+1. Clone the repository:
 
-- `0` — Legitimate transaction
-- `1` — Fraudulent transaction
+   ```bash
+   git clone https://github.com/hamzahsayyed/AI-Fraud-Risk-Intelligence.git
+   ```
 
-Dataset source: IEEE-CIS Fraud Detection, Kaggle.
+2. Open the project folder:
 
-## Model Development
+   ```bash
+   cd AI-Fraud-Risk-Intelligence
+   ```
 
-The training pipeline performs the following operations:
+3. Create and activate a virtual environment:
 
-1. Loads the transaction dataset.
-2. Separates input features from the fraud target.
-3. Encodes categorical variables using one-hot encoding.
-4. Handles missing values.
-5. Splits the data into training and testing sets using stratified sampling.
-6. Trains an XGBoost classifier using balanced sample weights.
-7. Evaluates model discrimination using ROC-AUC.
-8. Saves the trained model and its feature list for application use.
+   ```bash
+   python -m venv .venv
+   ```
 
-### Model Evaluation
+   On Windows PowerShell:
 
-The current training pipeline reported the following ROC-AUC score:
+   ```powershell
+   .venv\Scripts\Activate.ps1
+   ```
 
-| Metric | Result |
-|---|---:|
-| ROC-AUC | 0.9280 |
+4. Install dependencies:
 
-ROC-AUC measures how well a model distinguishes between positive and negative classes across different classification thresholds. It does not, by itself, establish the accuracy of individual predictions or the suitability of a threshold for real-world use.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Project Structure
+5. Start the application:
 
-```text
-AI-Fraud-Risk-Intelligence/
-├── app.py
-├── train_model.py
-├── database.py
-├── fraud_xgboost_model.pkl
-├── fraud_threshold.pkl
-├── model_features.pkl
-├── fraud_history.db
-├── requirements.txt
-├── README.md
-└── data/
-    └── raw/
-        ├── train_transaction.csv
-        └── train_identity.csv
-```
+   ```bash
+   streamlit run app.py
+   ```
 
-The dataset files and generated database may be excluded from version control when appropriate.
+## 📁 Main Project Files
 
-## Installation and Setup
+- `app.py` — Streamlit application and fraud risk predictions.
+- `train_model.py` — Model training script.
+- `database.py` — SQLite database operations.
+- `fraud_xgboost_model.pkl` — Trained XGBoost model.
+- `fraud_threshold.pkl` — Saved classification threshold.
+- `model_features.pkl` — Model feature list.
+- `notebooks/` — Exploratory data analysis notebook.
 
-### Prerequisites
+## 📌 Dataset
 
-- Python 3.10 or a compatible Python version
-- pip
-- Git (optional)
+The project uses the **IEEE-CIS Fraud Detection** dataset from Kaggle. The raw dataset is not included in this repository because of its size.
 
-### 1. Clone the Repository
+## ⚠️ Disclaimer
 
-```bash
-git clone <your-repository-url>
-cd AI-Fraud-Risk-Intelligence
-```
+This is an educational AI/ML project. Predictions are estimates and have not been validated for real-world financial deployment.
 
-### 2. Create a Virtual Environment
+## 👨‍💻 Author
 
-Windows:
+**Hamza Sayyed**
 
-```powershell
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-If PowerShell blocks activation, use the virtual environment's Python executable directly.
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Run the Application
-
-```bash
-python -m streamlit run app.py
-```
-
-Open the local URL displayed in the terminal.
-
-### Retrain the Model
-
-If the dataset is available at the expected path, train the model with:
-
-```bash
-python train_model.py
-```
-
-**Note:** Training overwrites the saved model and feature-list files. Keep backups if you need to preserve a previous model version.
-
-## Limitations
-
-- Predictions depend on the quality of the training data and the information provided to the model.
-- The current application collects only a limited set of transaction details, while the model uses a larger feature set.
-- Some model features are initialized with default values when corresponding inputs are unavailable. This may affect prediction reliability.
-- The displayed risk category depends on the configured threshold.
-- The reported ROC-AUC score does not guarantee performance on unseen real-world transactions.
-
-## Future Improvements
-
-- Improve feature alignment between the training pipeline and application inputs.
-- Evaluate false positives, false negatives, precision, and recall across multiple thresholds.
-- Add explainability using SHAP or other feature-attribution techniques.
-- Expand transaction input fields and validate input values.
-- Add automated tests and structured logging.
-- Improve deployment configuration and model version management.
-
-## Disclaimer
-
-This project is intended for educational and demonstration purposes. It has not been validated for production financial fraud detection and should not be used as the sole basis for financial decisions.
+GitHub: https://github.com/hamzahsayyed
